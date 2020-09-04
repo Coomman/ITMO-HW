@@ -1,6 +1,7 @@
 ﻿using System;
+using Lab1_1.DTO;
 
-namespace OptimizationMethods
+namespace Lab1_1
 {
     internal class EntryPoint
     {

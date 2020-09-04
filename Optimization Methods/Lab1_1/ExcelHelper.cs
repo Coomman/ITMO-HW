@@ -1,10 +1,11 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using Lab1_1.DTO;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 
-namespace OptimizationMethods
+namespace Lab1_1
 {
     public class ExcelHelper
     {

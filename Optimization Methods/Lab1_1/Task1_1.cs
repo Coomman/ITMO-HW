@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
+using Lab1_1.DTO;
 
-namespace OptimizationMethods
+namespace Lab1_1
 {
     public enum Methods { Dichotomy, GoldenRatio, Fibonacci };
 

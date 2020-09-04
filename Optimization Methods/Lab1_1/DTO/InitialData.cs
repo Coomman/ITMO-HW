@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OptimizationMethods
+namespace Lab1_1.DTO
 {
     public class InitialData
     {
