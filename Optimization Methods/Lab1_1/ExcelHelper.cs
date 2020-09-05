@@ -1,15 +1,20 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Lab1_1.DTO;
-using NPOI.HSSF.UserModel;
+using System.Collections.Generic;
+
+using NPOI.SS.Util;
 using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
+using NPOI.SS.UserModel.Charts;
+
+using Lab1_1.DTO;
 
 namespace Lab1_1
 {
     public class ExcelHelper
     {
-        private readonly HSSFWorkbook _workbook = new HSSFWorkbook();
+        private readonly XSSFWorkbook _workbook = new XSSFWorkbook();
 
         private ISheet _sheet;
         private readonly IFont _font;
@@ -20,9 +25,14 @@ namespace Lab1_1
 
         private const int OffsetStep = 7;
         private const int TitleColumnNum = 2;
+        private const int ResultColumnNum = 4;
         private const int TableWidth = 5;
-
         private int _offset;
+
+        private readonly List<string> _errorList = new List<string>();
+        private readonly List<double> _dichotomyIterations = new List<double>();
+        private readonly List<double> _goldenRatioIterations = new List<double>();
+        private readonly List<double> _fibonacciIterations = new List<double>();
 
         public ExcelHelper()
         {
@@ -77,18 +87,42 @@ namespace Lab1_1
 
         public void ProcessSheet(FinalResult[] results, double error)
         {
-            _sheet = _workbook.CreateSheet($"ε = {error}");
+            _sheet = _workbook.CreateSheet($"ε = {error:G}");
+            _errorList.Add($"{error:G}");
             _offset = 0;
 
             var rowCount = results.OrderByDescending(res => res.IterationCount).First().IterationCount + 3;
             for (int i = 0; i < rowCount; i++)
                 _sheet.CreateRow(i);
 
-            foreach(var res in results)
+            foreach (var res in results)
+            {
                 FillSheet(res);
+                switch (res.Method)
+                {
+                    case Methods.Dichotomy:
+                        _dichotomyIterations.Add(res.IterationCount);
+                        break;
+                    case Methods.GoldenRatio:
+                        _goldenRatioIterations.Add(res.IterationCount);
+                        break;
+                    case Methods.Fibonacci:
+                        _fibonacciIterations.Add(res.IterationCount);
+                        break;
+                    default: throw new ArgumentOutOfRangeException(nameof(res.Method), "Method is not supported");
+                }
+            }
 
             for (int i = 0; i < TableWidth + _offset; i++)
                 _sheet.AutoSizeColumn(i);
+        }
+        public void ProcessChart()
+        {
+            var sheet = _workbook.CreateSheet("Chart");
+            var drawing = sheet.CreateDrawingPatriarch();
+            var anchor = drawing.CreateAnchor(0, 0, 0, 0, 0, 5, 21, 35);
+
+            AddChart(drawing, sheet, anchor);
         }
         public void SaveDoc(string path)
         {
@@ -109,7 +143,9 @@ namespace Lab1_1
         {
             var currentRow = _sheet.GetRow(0);
 
+            InsertCell(currentRow, _offset, (double) result.IterationCount, _boldCellStyle, CellType.Numeric);
             InsertCell(currentRow, TitleColumnNum + _offset, result.Method.ToString(), _boldCellStyle, CellType.String);
+            InsertCell(currentRow, ResultColumnNum + _offset, result.Res, _boldCellStyle, CellType.Numeric);
         }
         private void AddHeader()
         {
@@ -144,6 +180,32 @@ namespace Lab1_1
                 rowNum++;
             }
         }
+        private void AddChart(IDrawing drawing, ISheet sheet, IClientAnchor anchor)
+        {
+            var chart = drawing.CreateChart(anchor);
+            var legend = chart.GetOrCreateLegend();
+            legend.Position = LegendPosition.Bottom;
+
+            var data = chart.ChartDataFactory.CreateLineChartData<string, double>();
+
+            var bottomAxis = chart.ChartAxisFactory.CreateCategoryAxis(AxisPosition.Bottom);
+            var leftAxis = chart.ChartAxisFactory.CreateValueAxis(AxisPosition.Left);
+            leftAxis.Crosses = AxisCrosses.AutoZero;
+
+            var row = sheet.CreateRow(0);
+            for (int i = 0; i < _errorList.Count; i++)
+            {
+                var cell = row.CreateCell(i);
+                cell.SetCellValue(_errorList[i]);
+            }
+            var xAxis = DataSources.FromStringCellRange(sheet, new CellRangeAddress(0, 0, 0, _errorList.Count - 1));
+
+            FillChartDataCells(sheet, 1, _dichotomyIterations, xAxis, data);
+            FillChartDataCells(sheet, 2, _goldenRatioIterations, xAxis, data);
+            FillChartDataCells(sheet, 3, _fibonacciIterations, xAxis, data);
+
+            chart.Plot(data, bottomAxis, leftAxis);
+        }
 
         private static void InsertCell(IRow currentRow, int cellIndex, object value, ICellStyle style, CellType type)
         {
@@ -157,6 +219,17 @@ namespace Lab1_1
 
             cell.CellStyle = style;
             cell.SetCellType(type);
+        }
+        private static void FillChartDataCells(ISheet sheet, int rowNum, IReadOnlyList<double> iterationsList, IChartDataSource<string> xAxis, ILineChartData<string, double> data)
+        {
+            var row = sheet.CreateRow(rowNum);
+            for (int i = 0; i < iterationsList.Count; i++)
+                row.CreateCell(i).SetCellValue(iterationsList[i]);
+
+            var yAxis = DataSources.FromNumericCellRange(sheet,
+                new CellRangeAddress(rowNum, rowNum, 0, iterationsList.Count - 1));
+
+            data.AddSeries(xAxis, yAxis).SetTitle(((Methods)(rowNum - 1)).ToString());
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
+
 using Lab1_1.DTO;
 
 namespace Lab1_1
@@ -13,7 +14,7 @@ namespace Lab1_1
         private readonly List<long> _fibonacci = new List<long> {1, 1};
 
         private Func<double, double> _func;
-        private Func<Segment, Segment> _routine;
+        private Func<Segment, Segment> _method;
 
         private Segment _initialSegment;
         private IterationResult _lastIterationResult;
@@ -24,7 +25,7 @@ namespace Lab1_1
 
         public Task1_1(Methods method)
         {
-            _routine = method switch
+            _method = method switch
             {
                 Methods.Dichotomy => DichotomyMethod,
                 Methods.GoldenRatio => GoldenRatioMethod,
@@ -42,7 +43,7 @@ namespace Lab1_1
             _iterationCount = 0;
             _result = new FinalResult {Results = new List<IterationResult>()};
 
-            if (_routine == FibonacciMethod)
+            if (_method == FibonacciMethod)
                 GenerateFibonacci((long) ((data.To - data.From) / _error));
 
             var segment = new Segment {From = data.From, To = data.To};
@@ -51,7 +52,7 @@ namespace Lab1_1
             while (segment.Length >= _error)
             {
                 _iterationCount++;
-                segment = _routine(segment);
+                segment = _method(segment);
 
                 _result.Results.Add(_lastIterationResult);
             }
@@ -72,15 +73,15 @@ namespace Lab1_1
             var results = new FinalResult[3];
             _error = error;
 
-            _routine = DichotomyMethod;
+            _method = DichotomyMethod;
             results[0] = GetMinimum(data);
             results[0].Method = Methods.Dichotomy;
 
-            _routine = GoldenRatioMethod;
+            _method = GoldenRatioMethod;
             results[1] = GetMinimum(data);
             results[1].Method = Methods.GoldenRatio;
 
-            _routine = FibonacciMethod;
+            _method = FibonacciMethod;
             results[2] = GetMinimum(data);
             results[2].Method = Methods.Fibonacci;
 
