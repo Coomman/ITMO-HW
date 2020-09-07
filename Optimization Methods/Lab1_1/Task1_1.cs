@@ -20,7 +20,7 @@ namespace Lab1_1
         private IterationResult _lastIterationResult;
         private FinalResult _result;
 
-        private double _error;
+        private double _error = Math.Pow(10, -5);
         private int _iterationCount;
 
         public Task1_1(Methods method)
@@ -138,6 +138,60 @@ namespace Lab1_1
             return res1.CompareTo(res2) < 0
                 ? new Segment { From = segment.From, To = x2 }
                 : new Segment { From = x1, To = segment.To };
+        }
+
+        public Segment GetSegmentWithMinimum(Func<double, double> func)
+        {
+            const int startPoint = 0;
+            _func = func;
+
+            var segment = GetInitialSegment(startPoint);
+
+            double step = _error;
+            if (segment.To < segment.From)
+                step = -step;
+
+            return GetSegmentWithMinimum(segment, step);
+        }
+
+        private Segment GetInitialSegment(double startPoint)
+        {
+            var segment = new Segment { From = startPoint };
+
+            if (_func(startPoint + _error) < _func(startPoint))
+            {
+                segment.To = startPoint + _error;
+            }
+            else if (_func(startPoint - _error) < _func(startPoint))
+            {
+                segment.To = startPoint - _error;
+            }
+            else
+            {
+                segment.From = startPoint - _error;
+                segment.To = startPoint + _error;
+            }
+
+            return segment;
+        }
+        private Segment GetSegmentWithMinimum(Segment segment, double step)
+        {
+            while (true)
+            {
+                var oldRes = _func(segment.To);
+                var newRes = _func(segment.To + step);
+
+                if (newRes >= oldRes)
+                    return new Segment
+                    {
+                        From = Math.Min(segment.From, segment.To + step),
+                        To = Math.Max(segment.From, segment.To + step)
+                    };
+
+                segment.From = segment.To;
+                segment.To += step;
+                step *= 2;
+            }
         }
     }
 }
