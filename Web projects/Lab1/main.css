@@ -1,0 +1,96 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    text-decoration: none;
+}
+
+html {
+    background-color: rgb(41, 44, 48);
+}
+
+header {
+    background-color: rgb(50, 53, 57);
+
+    width: 61%;
+    height: 18.125rem;
+
+    margin: 2.5rem auto;
+    padding: 0.9375rem 1.5625rem;
+    box-sizing: border-box;
+    border-radius: 1.875rem;
+    box-shadow: 0 1.25rem 2.5rem rgb(55, 55, 55);
+
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+}
+
+.avatar {
+    width: 11.25rem;
+    height: 11.25rem;
+
+    border-radius: 50%;
+    margin-bottom: 0.625rem;
+}
+
+.name {
+    font: 2.375rem Montserrat, sans-serif;
+    color: honeydew;
+}
+
+.position {
+    font: 1.5rem Lato, arial, sans-serif;
+    color: honeydew;
+}
+
+.info-column {
+    width: 33%;
+    display: flex;
+    flex-flow: column;
+    box-sizing: border-box;
+}
+
+.main-column {
+    align-items: center;
+    justify-content: center;
+}
+
+.info-row {
+    display: flex;
+    flex-flow: row;
+    margin-bottom: 1.25rem;
+}
+
+.info-icon {
+    margin-right: 0.4375rem;
+    width: 1.125rem;
+}
+
+.info-font {
+    font: 1.0625rem Montserrat;
+    color: honeydew;
+}
+
+.left-side-column {
+    padding-top: 2.1875rem;
+    padding-left: 5.9375rem;
+}
+
+.right-side-column {
+    align-items: center;
+    padding-top: 2.1875rem;
+    padding-right: 2.5rem;
+}
+
+.socials-row {
+    width: 45%;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.socials-icon img{
+    width: 3.125rem;
+}
