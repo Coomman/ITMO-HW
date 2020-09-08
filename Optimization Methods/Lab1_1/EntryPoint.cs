@@ -20,6 +20,8 @@ namespace Lab1_1
 
         private static void Main()
         {
+            CheckMultiSegmentWithMinimum();
+
             try
             {
                 foreach (var data in Data)
@@ -39,7 +41,7 @@ namespace Lab1_1
 
         private static void CheckSegmentWithMinimum(InitialData data)
         {
-            var task = new Task1_1(Methods.Dichotomy);
+            var task = new MinimumFinder(Methods.Dichotomy);
 
             var segment = task.GetSegmentWithMinimum(data.Func);
             Console.WriteLine($"Segment with minimum: {segment}");
@@ -54,13 +56,25 @@ namespace Lab1_1
         private static void CheckMinimum(int myVar)
         {
             var logger = new ExcelHelper();
-            var task = new Task1_1(logger);
+            var task = new MinimumFinder(logger);
 
             for (int i = 2; i < 11; i++)
                 task.RunAll(Data[myVar], Math.Pow(10, -i));
 
             logger.ProcessChart();
             logger.SaveDoc("result.xlsx");
+        }
+        private static void CheckMultiSegmentWithMinimum()
+        {
+            var task = new MultiMinimumFinder();
+
+            static double Func(Vector x) => Math.Pow(x[0] - 4, 2) + Math.Pow(x[1] - 8, 2);
+
+            //static double Func(Vector x) => Math.Cos(x[0]);
+
+            var res = task.GetMultiSegmentWithMinimum(Func, new Vector(new[] {-1.0, -2.0}));
+
+            Console.WriteLine(res);
         }
     }
 }

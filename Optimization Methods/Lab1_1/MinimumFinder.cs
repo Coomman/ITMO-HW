@@ -8,7 +8,7 @@ namespace Lab1_1
 {
     public enum Methods { Dichotomy, GoldenRatio, Fibonacci };
 
-    public class Task1_1
+    public class MinimumFinder
     {
         private readonly ExcelHelper _logger = new ExcelHelper();
         private readonly List<long> _fibonacci = new List<long> {1, 1};
@@ -23,7 +23,7 @@ namespace Lab1_1
         private double _error = Math.Pow(10, -5);
         private int _iterationCount;
 
-        public Task1_1(Methods method)
+        public MinimumFinder(Methods method)
         {
             _method = method switch
             {
@@ -32,7 +32,7 @@ namespace Lab1_1
                 Methods.Fibonacci => FibonacciMethod
             };
         }
-        public Task1_1(ExcelHelper logger)
+        public MinimumFinder(ExcelHelper logger)
         {
             _logger = logger;
         }
