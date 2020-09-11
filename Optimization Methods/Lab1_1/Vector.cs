@@ -50,6 +50,8 @@ namespace Lab1_1
 
         public double this[int i] => _coords[i];
 
+        public Vector Normalized => new Vector(_coords.Select(c => c / Length));
+
         public override string ToString()
             => $"{{{string.Join("; ", _coords)}}}";
     }

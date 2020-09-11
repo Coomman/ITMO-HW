@@ -9,5 +9,8 @@
         {
             return $"From: {From}, To: {To}";
         }
+
+        public Vector Mid => From + (To - From) * 0.5;
+        public double Length => (To - From).Length;
     }
 }

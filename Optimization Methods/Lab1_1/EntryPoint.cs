@@ -66,7 +66,7 @@ namespace Lab1_1
         }
         private static void CheckMultiSegmentWithMinimum()
         {
-            var task = new MultiMinimumFinder();
+            var task = new MultiMinimumFinder(Methods.GoldenRatio);
 
             static double Func(Vector x) => Math.Pow(x[0] - 4, 2) + Math.Pow(x[1] - 8, 2);
 
@@ -74,7 +74,9 @@ namespace Lab1_1
 
             var res = task.GetMultiSegmentWithMinimum(Func, new Vector(new[] {-1.0, -2.0}));
 
-            Console.WriteLine(res);
+            var res2 = task.GetMinimum(new MultiInitalData() {From = res.From, To = res.To, Func = Func});
+
+            Console.WriteLine(res2.Item1);
         }
     }
 }
