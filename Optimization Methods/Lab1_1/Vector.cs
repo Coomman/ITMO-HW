@@ -46,11 +46,10 @@ namespace Lab1_1
         }
 
         public int Size => _coords.Length;
-        public double Length => Math.Sqrt(_coords.Select(n => n * n).Sum());
+        public double Length => Math.Sqrt(_coords.Sum(n => n * n));
+        public Vector Normalized => new Vector(_coords.Select(c => c / Length));
 
         public double this[int i] => _coords[i];
-
-        public Vector Normalized => new Vector(_coords.Select(c => c / Length));
 
         public override string ToString()
             => $"{{{string.Join("; ", _coords)}}}";

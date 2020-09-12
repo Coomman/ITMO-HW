@@ -72,11 +72,11 @@ namespace Lab1_1
 
             //static double Func(Vector x) => Math.Cos(x[0]);
 
-            var res = task.GetMultiSegmentWithMinimum(Func, new Vector(new[] {-1.0, -2.0}));
+            var segment = task.GetMultiSegmentWithMinimum(Func, new Vector(new[] {-1.0, -2.0}));
 
-            var res2 = task.GetMinimum(new MultiInitalData() {From = res.From, To = res.To, Func = Func});
+            var result = task.GetMinimum(new MultiInitialData {From = segment.From, To = segment.To, Func = Func});
 
-            Console.WriteLine(res2.Item1);
+            Console.WriteLine(result.segment);
         }
     }
 }

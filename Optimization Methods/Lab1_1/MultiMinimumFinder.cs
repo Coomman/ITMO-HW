@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
+
 using Lab1_1.DTO;
 
 namespace Lab1_1
@@ -10,7 +11,7 @@ namespace Lab1_1
         private readonly List<long> _fibonacci = new List<long> { 1, 1 };
 
         private Func<Vector, double> _func;
-        private Func<MultiSegment, MultiSegment> _method;
+        private readonly Func<MultiSegment, MultiSegment> _method;
         private Vector _direction;
 
         private MultiSegment _initialSegment;
@@ -28,11 +29,18 @@ namespace Lab1_1
             };
         }
 
-        public (MultiSegment, int) GetMinimum(MultiInitalData data)
+        private void GenerateFibonacci(long rightBorder)
+        {
+            while (_fibonacci.Last() <= rightBorder)
+                _fibonacci.Add(_fibonacci[^1] + _fibonacci[^2]);
+        }
+
+        public (MultiSegment segment, int iterationCount) GetMinimum(MultiInitialData data)
         {
             _func = data.Func;
             _iterationCount = 0;
             _direction = (data.To - data.From).Normalized;
+
             if (_method == FibonacciMethod)
                 GenerateFibonacci((long)((data.To - data.From).Length / _error));
 
@@ -56,7 +64,6 @@ namespace Lab1_1
 
             return GetNextSegment(segment, x1, x2);
         }
-
         private MultiSegment GoldenRatioMethod(MultiSegment segment)
         {
             var x1 = segment.From + (segment.To - segment.From) * 0.381966011;
@@ -73,13 +80,6 @@ namespace Lab1_1
 
             return GetNextSegment(segment, x1, x2);
         }
-
-        private void GenerateFibonacci(long rightBorder)
-        {
-            while (_fibonacci.Last() <= rightBorder)
-                _fibonacci.Add(_fibonacci[^1] + _fibonacci[^2]);
-        }
-
 
         private MultiSegment GetNextSegment(MultiSegment segment, Vector x1, Vector x2)
         {
