@@ -1,0 +1,25 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    text-decoration: none;
+}
+
+html {
+    background-color: rgb(41, 44, 48);
+}
+
+.hidden {
+    display: none;
+}
+
+p {
+    margin-bottom: 16px;
+}
+
+b {
+    background-clip: text;
+    background: -webkit-linear-gradient(rgb(122,137,222), rgb(73, 76, 103));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

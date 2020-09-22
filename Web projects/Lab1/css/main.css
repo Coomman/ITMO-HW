@@ -1,0 +1,190 @@
+main {  
+    width: 70%;
+    height: 1442px;
+
+    display: flex;
+    flex-flow: column;
+
+    padding: 15px 25px;
+    margin: 75px auto;
+}
+
+section {
+    background-color: rgb(50, 53, 60);
+
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+
+    border-radius: 20px;
+    overflow: hidden;
+
+    transition: box-shadow 0.15s linear 0s, transform 0.15s linear 0s;
+    will-change: transform;
+}
+
+section:hover {
+    box-shadow: 15px -15px 15px -4px rgb(16, 19, 23);
+
+    transform: translate(-15px, 15px);
+}
+
+.main-section {
+    height: fit-content;
+}
+
+.about-me {
+    width: 700px;
+    height: 100%;
+}
+
+.title {
+    background-color: rgb(63, 66, 93);
+
+    font: 30px Montserrat, sans-serif;
+    color: honeydew;
+
+    width: 60%;
+    height: 50px;
+
+    padding-top: 3px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+
+    border-radius: 100%/175%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.section-content {
+    font: 20px Montserrat, sans-serif;
+    color: honeydew;
+
+    width: 100%;
+    
+    margin-top: 20px;
+    box-sizing: border-box;
+    padding: 0 20px;
+}
+
+.prog-lang {
+    padding-left: 16px;
+}
+
+.section-column {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.section-row {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.skills {
+    width: 550px;
+    height: 480px;
+
+    margin-bottom: 20px;
+}
+
+.skill {
+    display: flex;
+    flex-flow: column nowrap;
+
+    margin-bottom: 26px;
+}
+
+.skill-title {
+    font: 24px Montserrat, sans-serif;
+    font-weight: 500;
+    color: honeydew;
+
+    padding-left: 5px;
+}
+
+.skill-bar {
+    position: relative;
+
+    width: 100%;
+    height: 32px;
+
+    background-color: rgb(41, 44, 48);
+    margin-top: 10px;
+
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+.skill-progress {
+    position: absolute;
+
+    left: 0;
+    height: 100%;
+    width: 0;
+
+    background: linear-gradient(to right, rgb(73, 76, 103), rgb(122,137,222));
+    background-size: 510px;
+}
+
+.skill-progress-max {
+    animation: fill-progress-max 0.75s ease-out 0.25s;
+    animation-fill-mode: forwards;
+}
+
+.skill-progress-expert {
+    animation: fill-progress-expert 0.75s ease-out 0.25s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fill-progress-max {
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes fill-progress-expert {
+    100% {
+        width: 85%;
+    }
+}
+
+.education {
+    width: 550px;
+    height: 150px;
+}
+
+.education-place {
+    display: flex;
+    flex-flow: column;
+}
+
+.education-place-title {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+
+    margin-bottom: 6px;
+}
+
+.education-place-icon {
+    padding-right: 10px;
+    width: 24px;
+}
+
+.education-place-branch {
+    font-size: 16px;
+    padding-left: 35px;
+}
+
+.education-place-years {
+    font-size: 14px;
+    opacity: 0.6;
+}

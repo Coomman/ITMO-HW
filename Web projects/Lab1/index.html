@@ -4,14 +4,31 @@
     <title>Rauba Maxim - M33051</title>
     <meta charset="utf-8"/>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap" rel="stylesheet">
 
-    <link href="main.css" rel="stylesheet">
+    <link href="css/default.css" rel="stylesheet">
+    <link href="css/header.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
 
-    <script src="autoResize.js"></script>
+    <script src="scripts/autoResize.js"></script>
 </head>
 <body>
+    <svg class="hidden">
+        <defs>
+          <linearGradient id="gradient" x1="0" y1="00%" x2 ="0" y2="100%">
+            <stop stop-color="black" offset="0"/>
+            <stop stop-color="white" offset="1"/>
+          </linearGradient>
+      
+          <mask id="masking" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
+            <rect y="0.3" width="1" height="1" fill="url(#gradient)" /> 
+            <circle cx=".5" cy=".5" r=".35" fill="white" />
+          </mask>
+        </defs>
+    </svg>
+
     <header>
         <div class="info-column left-side-column">
             <span class="info-row">
@@ -55,7 +72,82 @@
     </header>
 
     <main>
-        
+        <div class="section-row space-between main-section">
+            <div class="section-column">
+                <section class="about-me">
+                    <div class="title">About Me</div>
+
+                    <div class="section-content">
+                        <p>Владение языками программирования:
+                            <p class="prog-lang"><b>C# 8.0</b> (MSVS + ReSharper, ASP.NET, WPF, ADO.NET, EF, NUnit)</p>
+                            <p class="prog-lang"><b>C++ 11</b> (MSVS, Qt)</p>
+                        </p>
+                        <p>Работа с базами данных посредством <b>SSMS</b></p>
+                        <p>Умение работы с <b>Git</b> и <b>TFS</b>, с применением <b>CI/CD</b></p>
+                        <p>Понимание принципов работы <b>ОС</b>, опыт использования и написания скриптов на <b>Linux</b></p>
+                        <p>Знание <b>алгоритмов и структур данных</b>, <b>паттернов проектирования</b>, а также <b>MVVM</b> и <b>MVC</b>, принципов <b>SOLID</b> и умение применять их на практике</p>
+                        <p>Опыт разработки <b>многопоточных</b> приложений</p>
+                        <p>Понимание понятия <b>Сlean code</b></p>
+                        <p>Практический опыт командной разработки со <b>Scrum</b> методологией</p>
+                        <p>Уверенное знание английского языка (<b>C1</b> по результатам Cambridge Exam)</p>
+                    </div>
+                </section>
+            </div>
+
+            <div class="section-column">
+                <section class="skills">
+                    <div class="title">Skills</div>
+                    <div class="section-content">
+                        <div class="skill">
+                            <span class="skill-title">C#</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress skill-progress-max"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill">
+                            <span class="skill-title">Clean Code</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress skill-progress-max"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill">
+                            <span class="skill-title">SSMS</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress skill-progress-expert"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill">
+                            <span class="skill-title">Git</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress skill-progress-expert"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="education">
+                    <div class="title">Education</div>
+                        <div class="section-content">
+                            <div class="education-place">
+                                <span class="education-place-title">
+                                    <img class="education-place-icon" src="icons/graduation-hat.svg" draggable="false"/>
+                                    ITMO University
+                                </span>
+                                <span class="education-place-branch">
+                                    Information Systems and Technologies
+                                    <span class="education-place-years">
+                                        (2018-2022)
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
     </main>
 
     <footer>
