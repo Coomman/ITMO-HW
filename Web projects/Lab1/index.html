@@ -12,8 +12,12 @@
     <link href="css/header.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
 
+    <link href="css/github.css" rel="stylesheet">
+
     <script src="scripts/autoResize.js"></script>
+    <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
 </head>
+
 <body>
     <svg class="hidden">
         <defs>
@@ -130,28 +134,90 @@
 
                 <section class="education">
                     <div class="title">Education</div>
-                        <div class="section-content">
-                            <div class="education-place">
-                                <span class="education-place-title">
-                                    <img class="education-place-icon" src="icons/graduation-hat.svg" draggable="false"/>
-                                    ITMO University
+                    <div class="section-content">
+                        <div class="education-place">
+                            <span class="education-place-title">
+                                <img class="education-place-icon" src="icons/graduation-hat.svg" draggable="false"/>
+                                ITMO University
+                            </span>
+                            <span class="education-place-branch">
+                                Information Systems and Technologies
+                                <span class="education-place-years">
+                                    (2018-2022)
                                 </span>
-                                <span class="education-place-branch">
-                                    Information Systems and Technologies
-                                    <span class="education-place-years">
-                                        (2018-2022)
-                                    </span>
-                                </span>
-                            </div>
+                            </span>
                         </div>
                     </div>
                 </section>
             </div>
         </div>
+
+        <div class="section-row space-between project-section">
+            <section class="trainings">
+                <div class="title">Trainings</div>
+                <div class="section-content">
+                    <div class="training">
+                        <span class="training-year">2020</span>
+                        <span class="training-info">
+                            <span class="training-company">Veeam</span>
+                            <span class="training-name">Veeam Academy, Профессия C#.NET разработчика</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="section-content">
+                    <div class="training">
+                        <span class="training-year">2020</span>
+                        <span class="training-info">
+                            <span class="training-company">СКБ Контур</span>
+                            <span class="training-name">Кампус 2020, Проектирование и тестирование кода на C#</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="section-content">
+                    <div class="training">
+                        <span class="training-year">2017</span>
+                        <span class="training-info">
+                            <span class="training-company">Высшая Инженерная Школа</span>
+                            <span class="training-name">Объектно-ориентированное программирование на C++ <br>с использованием Qt
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="section-content">
+                    <div class="training">
+                        <span class="training-year">2017</span>
+                        <span class="training-info">
+                            <span class="training-company">Высшая Инженерная Школа</span>
+                            <span class="training-name">Структурное и процедурное программирование на C++</span>
+                        </span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="last-project">
+                <div class="title">Last project</div>
+            </section>
+        </div>
+
+        <section class="github">
+            <div class="section-content">
+                <div class="calendar">
+                    <!-- Loading stuff -->
+                    Loading the data just for you.
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
 
     </footer>
+
+    <script>
+        GitHubCalendar(".calendar", "coomman", { responsive: true });
+    </script>
 </body>
 </html>

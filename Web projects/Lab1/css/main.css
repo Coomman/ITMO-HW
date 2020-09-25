@@ -1,6 +1,5 @@
 main {  
     width: 70%;
-    height: 1442px;
 
     display: flex;
     flex-flow: column;
@@ -82,6 +81,8 @@ section:hover {
 .section-row {
     display: flex;
     flex-flow: row nowrap;
+
+    margin-bottom: 20px;
 }
 
 .space-between {
@@ -187,4 +188,45 @@ section:hover {
 .education-place-years {
     font-size: 14px;
     opacity: 0.6;
+}
+
+.trainings {
+    width: 700px;
+    height: 480px;
+}
+
+.training {
+    display: flex;
+    flex-flow: row;
+
+    align-items: center;
+    margin-bottom: 26px;
+}
+
+.training-year {
+    font-weight: 600;
+    width: 80px
+}
+
+.training-info {
+    display: flex;
+    flex-flow: column;
+    flex: 1 1 0;
+}
+
+.training-company {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.training-name {
+    font-size: 19px;
+}
+
+.last-project {
+    width: 550px;
+}
+
+.github {
+    
 }
