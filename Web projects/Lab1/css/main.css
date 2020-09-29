@@ -63,6 +63,7 @@ section:hover {
     color: honeydew;
 
     width: 100%;
+    height: 100%;
     
     margin-top: 20px;
     box-sizing: border-box;
@@ -228,5 +229,29 @@ section:hover {
 }
 
 .github {
-    
+    margin-bottom: 20px;
+}
+
+.ascii-image {
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+#ascii-content {
+    color: rgb(181, 177, 173);
+    line-height: 1.4;
+    font-family: "Roboto Mono";
+}
+
+#ascii-content.preview-mono {
+    white-space: pre;
+}
+
+.code-example {
+    width: 550px;
+}
+
+.code-method {
+    display: flex;
+    flex-flow: column;
 }
