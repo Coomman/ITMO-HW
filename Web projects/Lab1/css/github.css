@@ -1,5 +1,5 @@
 .calendar {
-    min-height: 243px;
+    min-height: 15.1875rem;
     text-align: center;
     margin: 0 auto;
 }
@@ -15,24 +15,24 @@
 
 .contrib-legend {
     text-align: right;
-    padding: 0 14px 10px 0;
+    padding: 0 0.875rem 0.625rem 0;
     float: right;
 }
 
 .contrib-legend .legend {
     display: inline-block;
     list-style: none;
-    margin: 0 5px;
+    margin: 0 0.3125rem;
     position: relative;
-    bottom: -1px;
+    bottom: -0.0625rem;
     padding: 0;
 }
 
 .contrib-legend .legend li {
     display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 2px;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 0.125rem;
 }
 
 .contrib-legend .legend li:nth-child(1) {
@@ -56,42 +56,42 @@
 }
 
 .text-small {
-    font-size: 12px;
+    font-size: 0.75rem;
     color: #767676;
 }
 
 .calendar-graph {
-    padding: 5px 0 0;
+    padding: 0.3125rem 0 0;
     text-align: center;
 }
 
 .contrib-column {
-    padding: 15px 0;
+    padding: 0.9375rem 0;
     text-align: center;
-    font-size: 14px;
+    font-size: 0.875rem;
 }
 
 .table-column {
     display: table-cell;
     width: 1%;
-    padding-right: 10px;
-    padding-left: 10px;
+    padding-right: 0.625rem;
+    padding-left: 0.625rem;
     vertical-align: top;
 }
 
 .contrib-number {
     font-weight: 300;
     line-height: 1.3em;
-    font-size: 24px;
+    font-size: 1.5rem;
     display: block;
     color: honeydew;
-    margin: 6px 0;
+    margin: 0.375rem 0;
 }
 
 .calendar img.spinner {
-    width: 70px;
-    margin-top: 50px;
-    min-height: 70px;
+    width: 4.375rem;
+    margin-top: 3.125rem;
+    min-height: 4.375rem;
 }
 
 .monospace {
@@ -106,17 +106,17 @@
 }
 
 .contrib-footer {
-    font-size: 11px;
-    padding: 0 10px 12px;
+    font-size: 0.6875rem;
+    padding: 0 0.625rem 0.75rem;
     text-align: left;
     width: 100%;
     box-sizing: border-box;
-    height: 26px;
+    height: 1.625rem;
 }
 
 .left.text-muted {
     float: left;
-    margin-left: 9px;
+    margin-left: 0.5625rem;
     color: honeydew;
 }
 .left.text-muted a {
@@ -168,12 +168,12 @@ h2.f4.text-normal.mb-3 {
     white-space: nowrap;
     position: absolute;
     z-index: 99999;
-    padding: 10px;
-    font-size: 12px;
+    padding: 0.625rem;
+    font-size: 0.75rem;
     color: #959da5;
     text-align: center;
     background: rgba(0,0,0,.85);
-    border-radius: 3px;
+    border-radius: 0.1875rem;
     display: none;
     pointer-events: none;
 }
@@ -185,18 +185,18 @@ h2.f4.text-normal.mb-3 {
 }
 .day-tooltip:after {
     position: absolute;
-    bottom: -10px;
+    bottom: -0.625rem;
     left: 50%;
-    width: 5px;
-    height: 5px;
+    width: 0.3125rem;
+    height: 0.3125rem;
     box-sizing: border-box;
-    margin: 0 0 0 -5px;
+    margin: 0 0 0 -0.3125rem;
     content: " ";
-    border: 5px solid transparent;
+    border: 0.3125rem solid transparent;
     border-top-color: rgba(0,0,0,.85)
 }
 
 .position-relative {
-    box-shadow: 0 0 30px rgb(41,44,48);
-    border-radius: 20px;
+    box-shadow: 0 0 1.875rem rgb(41,44,48);
+    border-radius: 1.25rem;
 }

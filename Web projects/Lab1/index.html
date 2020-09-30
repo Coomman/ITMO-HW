@@ -11,6 +11,7 @@
     <link href="css/default.css" rel="stylesheet">
     <link href="css/header.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
+    <link href="css/footer.css" rel="stylesheet">
 
     <link href="css/github.css" rel="stylesheet">
 
@@ -19,20 +20,6 @@
 </head>
 
 <body>
-    <svg class="hidden">
-        <defs>
-          <linearGradient id="gradient" x1="0" y1="00%" x2 ="0" y2="100%">
-            <stop stop-color="black" offset="0"/>
-            <stop stop-color="white" offset="1"/>
-          </linearGradient>
-      
-          <mask id="masking" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
-            <rect y="0.3" width="1" height="1" fill="url(#gradient)" /> 
-            <circle cx=".5" cy=".5" r=".35" fill="white" />
-          </mask>
-        </defs>
-    </svg>
-
     <header>
         <div class="info-column left-side-column">
             <span class="info-row">
@@ -53,7 +40,7 @@
         </div>
 
         <div class="info-column main-column">
-            <img class="avatar" src="avatar.png" draggable="false"/>
+            <img class="avatar" src="avatar.jpg" draggable="false"/>
             <h1 class="name">Рауба Максим</h1>
             <h2 class="position">Junior C# Developer</h2>
         </div>
@@ -141,7 +128,7 @@
                                 ITMO University
                             </span>
                             <span class="education-place-branch">
-                                Information Systems and Technologies
+                                Information Technologies and Programming
                                 <span class="education-place-years">
                                     (2018-2022)
                                 </span>
@@ -204,14 +191,14 @@
                         <div ><table><tr><td><pre style="margin: 0; line-height: 125%">
     </pre></td><td><pre style="margin: 0; line-height: 125%">
 
-
 <span style="color: #007020; font-weight: bold">static void</span> <span style="color: #2196F3">Main</span>()
 {
     <span style="color: #007020; font-weight: bold">while</span> (corona.IsActive)
-        StayAtHome();
+        StayHome();
 }
 
-<span style="color: #007020; font-weight: bold">static void</span> <span style="color: #2196F3">StayAtHome</span>()
+
+<span style="color: #007020; font-weight: bold">static void</span> <span style="color: #2196F3">StayHome</span>()
 {
     Eat();
     Code();
@@ -221,34 +208,6 @@
                     </div>
                 </div>
             </section>
-
-            <!-- <section class="code-example">
-                <div class="section-content">
-                    <div style="line-height: 125%">
-                        <span style="color: #007020; font-weight: bold">static void</span> 
-                        <span style="color: #2196F3">Main</span>()
-                    </div>
-                    {
-                    <div style="line-height: 125%">
-                        <span style="color: #007020; font-weight: bold; margin-left: 40px;">while</span>
-                        <span>(corona.IsActive)</span>
-                    </div>
-                    <div style="margin-left: 80px; line-height: 125%;">StayAtHome();</div>
-                    }
-
-                    <div style="line-height: 125%">
-                        <span style="color: #007020; font-weight: bold">static void</span> 
-                        <span style="color: #2196F3">StayAtHome</span>()
-                    </div>
-                    {
-                    <div style="line-height: 125%">
-                        <div style="margin-left: 40px; line-height: 125%;">Eat();</div>
-                        <div style="margin-left: 40px; line-height: 125%;">Code();</div>
-                        <div style="margin-left: 40px; line-height: 125%;">Sleep();</div>
-                    </div>
-                    }
-                </div>
-            </section> -->
         </div>
 
         <section class="github">
@@ -259,7 +218,7 @@
 
             <section class="ascii-image">
                 <div class="section-content">
-                    <div id="ascii-content" class="preview-mono" style="font-size: 4px; ">
+                    <div id="ascii-content" class="preview-mono" style="font-size: 0.25rem; ">
                                                                                                            .                                                                                                                                 .. ....                                                                                                          
                                                                                                          ..                                                                                                                                    ...                                                                                                            
                                                                                                         ...                  .                                                                                                                    .                                                                                                           
@@ -410,7 +369,16 @@
     </main>
 
     <footer>
+        <blockquote>
+            <p>Работа — не волк</p>
+            <p>Работа — это ворк</p>
+            <p>Волк — это ходить</p>
+            <cite>Жак Фреско</cite>
+        </blockquote>
 
+        <div class="copyright">
+            © 2020 - 2020 Coomman
+        </div>
     </footer>
 
     <script>
