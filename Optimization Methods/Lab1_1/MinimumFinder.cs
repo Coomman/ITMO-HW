@@ -59,9 +59,20 @@ namespace Lab1_1
             _d = _e = segment.Length;
             _brantError = _error / 1000;
 
-            _initialSegment = segment;
+            _initialSegment = new Segment() {From = segment.From, To = segment.To};
             _lastIterationResult = new IterationResult {Segment = _initialSegment};
-            while (segment.Length >= _error * 10)
+
+            _result.Results.Add(new IterationResult
+            {
+                Segment = segment,
+                From = segment.From,
+                To = segment.To,
+                LengthRatio = segment.Length / _initialSegment.Length,
+                Res1 = _func(segment.From),
+                Res2 = _func(segment.To)
+            });
+
+            while (segment.Length >= _error)
             {
                 _iterationCount++;
                 segment = _method(segment);
@@ -69,12 +80,6 @@ namespace Lab1_1
                 _result.Results.Add(_lastIterationResult);
             }
 
-            _result.Results.Add(new IterationResult
-            {
-                Segment = segment, From = segment.From, To = segment.To,
-                LengthRatio = segment.Length / _initialSegment.Length,
-                Res1 = _func(segment.From), Res2 = _func(segment.To)
-            });
             _result.IterationCount = _iterationCount;
             _result.Res = Math.Min(_func(segment.From), _func(segment.To));
 
@@ -82,7 +87,7 @@ namespace Lab1_1
         }
         public void RunAll(InitialData data, double error)
         {
-            var results = new FinalResult[3];
+            var results = new FinalResult[5];
             _error = error;
 
             _method = DichotomyMethod;
@@ -96,6 +101,14 @@ namespace Lab1_1
             _method = FibonacciMethod;
             results[2] = GetMinimum(data);
             results[2].Method = Methods.Fibonacci;
+
+            _method = ParabolaMethod;
+            results[3] = GetMinimum(data);
+            results[3].Method = Methods.Parabola;
+
+            _method = BrentMethod;
+            results[4] = GetMinimum(data);
+            results[4].Method = Methods.Brent;
 
             _logger.ProcessSheet(results, error);
         }
@@ -150,22 +163,43 @@ namespace Lab1_1
             double fv = _func(_v);
             double fw = _func(_w);
 
-            var sorted = new[] {_w, _v, _x}.OrderBy(i => i).ToList();
+            var sorted = new[] {_w, _v, _x};
+            var test = sorted.OrderBy(x => x).ToList();
 
             if (fx.CompareTo(fw) != 0 && fx.CompareTo(fv) != 0 && fv.CompareTo(fw) != 0)
-                _u = ParabolaFunction(sorted[0], sorted[1], sorted[2]);
+            {
+                _u = ParabolaFunction(test[0], test[1], test[2]);
+            }
 
             if (_u > segment.From + _brantError && _u < segment.To - _brantError && Math.Abs(_u - _x) < _g / 2)
+            {
                 _d = Math.Abs(_u - _x);
+
+            }
             else
                 BrentSupportMethod(segment);
+
+            if (Math.Abs(_u - _x) < _brantError)
+                _u = _x + Math.Sign(_u - _x) * _brantError;
+
+            SetHyperParameters(segment);
+
+            _lastIterationResult = new IterationResult
+            {
+                Segment = segment,
+                LengthRatio = segment.Length / _initialSegment.Length,
+                From = segment.From,
+                To = segment.To,
+                Res1 = _func(segment.From),
+                Res2 = _func(segment.To)
+            };
 
             return segment;
         }
 
         private void BrentSupportMethod(Segment segment)
         {
-            if (_x < segment.Length / 2)
+            if (_x > segment.Mid / 2)
             {
                 _u = _x + K * (segment.To - _x);
                 _d = segment.To - _x;
@@ -175,11 +209,6 @@ namespace Lab1_1
                 _u = _x - K * (_x - segment.From);
                 _d = _x - segment.From;
             }
-
-            if (Math.Abs(_u - _x) < _brantError)
-                _u = _x + Math.Sign(_u - _x) * _brantError;
-
-            SetHyperParameters(segment);
         }
         private void SetHyperParameters(Segment segment)
         {
@@ -216,19 +245,26 @@ namespace Lab1_1
             var res1 = _func(x1);
             var res2 = _func(x2);
 
-            _lastIterationResult = new IterationResult
-            {
-                Segment = segment,
-                LengthRatio = segment.Length / _initialSegment.Length,
-                From = segment.From, To = segment.To, Res1 = res1, Res2 = res2
-            };
+            var result = new Segment();
 
             if (res1.CompareTo(res2) == 0)
-                return new Segment { From = x1, To = x2 };
+                result = new Segment { From = x1, To = x2 };
+            else
+                result = res1.CompareTo(res2) < 0
+                    ? new Segment { From = segment.From, To = x2 }
+                    : new Segment { From = x1, To = segment.To };
 
-            return res1.CompareTo(res2) < 0
-                ? new Segment { From = segment.From, To = x2 }
-                : new Segment { From = x1, To = segment.To };
+            _lastIterationResult = new IterationResult
+            {
+                Segment = result,
+                LengthRatio = result.Length / _initialSegment.Length,
+                From = result.From,
+                To = result.To,
+                Res1 = _func(result.From),
+                Res2 = _func(result.To)
+            };
+
+            return result;
         }
 
         public Segment GetSegmentWithMinimum(Func<double, double> func)

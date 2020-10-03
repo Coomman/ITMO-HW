@@ -1,5 +1,6 @@
 ﻿using System;
 using Lab1_1.DTO;
+using NPOI.SS.Formula.Functions;
 
 namespace Lab1_1
 {
@@ -24,7 +25,7 @@ namespace Lab1_1
             new InitialData {From = 6, To = 9.9, Func = x => Math.Pow(Math.Log10(x - 2), 2) + Math.Pow(Math.Log10(10 - x), 2) - Math.Pow(x, 0.2)}, // -0.84603
             new InitialData {From = 0, To = Math.PI * 2, Func = x => -3 * x * Math.Sin(x * 0.75) + Math.Exp(-2 * x)}, // -7.27463
             new InitialData {From = 0, To = 1, Func = x => Math.Exp(3 * x) + 5 * Math.Exp(-2 * x)}, // 5.14834
-            new InitialData {From = 0.5, To = 2.5, Func = x => 0.2 * x * Math.Log10(x) + Math.Pow(x - 2.3, 2)} // 0.16177
+            new InitialData {From = 0.5, To = 2.5, Func = x => 0.2 * x * Math.Log10(x) + Math.Pow(x - 2.3, 2)}, // 0.160177
         };
 
         private static void Main()
@@ -36,7 +37,7 @@ namespace Lab1_1
                 foreach (var data in Data)
                     CheckSegmentWithMinimum(data);
 
-                const int myVar = 3;
+                var myVar = 4;
                 CheckMinimum(myVar);
             }
             catch (Exception e)
@@ -54,8 +55,8 @@ namespace Lab1_1
 
             //var segment = task.GetSegmentWithMinimum(data.Func);
             //Console.WriteLine($"Segment with minimum: {segment}");
-
-            Console.WriteLine(task.GetMinimum(data).Res);
+            var test = task.GetMinimum(data);
+            Console.WriteLine($"Ans: {test.Res} Iterations: {test.IterationCount}");
 
             //data.From = segment.From;
             //data.To = segment.To;
@@ -67,11 +68,11 @@ namespace Lab1_1
             var logger = new ExcelHelper();
             var task = new MinimumFinder(logger);
 
-            for (int i = 2; i < 11; i++)
+            for (int i = 2; i < 8; i++)
                 task.RunAll(Data[myVar], Math.Pow(10, -i));
 
             logger.ProcessChart();
-            logger.SaveDoc("result.xlsx");
+            logger.SaveDoc($"result{myVar + 1}.xlsx");
         }
         private static void CheckMultiSegmentWithMinimum()
         {

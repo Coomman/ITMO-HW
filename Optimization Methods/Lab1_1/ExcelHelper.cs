@@ -33,6 +33,8 @@ namespace Lab1_1
         private readonly List<double> _dichotomyIterations = new List<double>();
         private readonly List<double> _goldenRatioIterations = new List<double>();
         private readonly List<double> _fibonacciIterations = new List<double>();
+        private readonly List<double> _parabolaIterations = new List<double>();
+        private readonly List<double> _brentIterations = new List<double>();
 
         public ExcelHelper()
         {
@@ -108,6 +110,12 @@ namespace Lab1_1
                         break;
                     case Methods.Fibonacci:
                         _fibonacciIterations.Add(res.IterationCount);
+                        break;
+                    case Methods.Parabola:
+                        _parabolaIterations.Add(res.IterationCount);
+                        break;
+                    case Methods.Brent:
+                        _brentIterations.Add(res.IterationCount);
                         break;
                     default: throw new ArgumentOutOfRangeException(nameof(res.Method), "Method is not supported");
                 }
@@ -203,6 +211,8 @@ namespace Lab1_1
             FillChartDataCells(sheet, 1, _dichotomyIterations, xAxis, data);
             FillChartDataCells(sheet, 2, _goldenRatioIterations, xAxis, data);
             FillChartDataCells(sheet, 3, _fibonacciIterations, xAxis, data);
+            FillChartDataCells(sheet, 4, _parabolaIterations, xAxis, data);
+            FillChartDataCells(sheet, 5, _brentIterations, xAxis, data);
 
             chart.Plot(data, bottomAxis, leftAxis);
         }
