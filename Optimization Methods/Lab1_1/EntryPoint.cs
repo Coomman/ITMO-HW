@@ -1,6 +1,5 @@
 ﻿using System;
 using Lab1_1.DTO;
-using NPOI.SS.Formula.Functions;
 
 namespace Lab1_1
 {
@@ -79,8 +78,6 @@ namespace Lab1_1
             var task = new MultiMinimumFinder(Methods.Fibonacci);
 
             static double Func(Vector x) => Math.Pow(x[0] - 4, 2) + Math.Pow(x[1] - 8, 2);
-
-            //static double Func(Vector x) => Math.Cos(x[0]);
 
             var segment = task.GetMultiSegmentWithMinimum(Func, new Vector(new[] {-1.0, -2.0}));
 

@@ -163,19 +163,12 @@ namespace Lab1_1
             double fv = _func(_v);
             double fw = _func(_w);
 
-            var sorted = new[] {_w, _v, _x};
-            var test = sorted.OrderBy(x => x).ToList();
-
+            var sorted = new[] { _w, _v, _x }.OrderBy(i => i).ToList();
             if (fx.CompareTo(fw) != 0 && fx.CompareTo(fv) != 0 && fv.CompareTo(fw) != 0)
-            {
-                _u = ParabolaFunction(test[0], test[1], test[2]);
-            }
+                _u = ParabolaFunction(sorted[0], sorted[1], sorted[2]);
 
             if (_u > segment.From + _brantError && _u < segment.To - _brantError && Math.Abs(_u - _x) < _g / 2)
-            {
                 _d = Math.Abs(_u - _x);
-
-            }
             else
                 BrentSupportMethod(segment);
 
@@ -199,7 +192,7 @@ namespace Lab1_1
 
         private void BrentSupportMethod(Segment segment)
         {
-            if (_x > segment.Mid / 2)
+            if (_x < segment.Mid)
             {
                 _u = _x + K * (segment.To - _x);
                 _d = segment.To - _x;
@@ -245,7 +238,7 @@ namespace Lab1_1
             var res1 = _func(x1);
             var res2 = _func(x2);
 
-            var result = new Segment();
+            Segment result;
 
             if (res1.CompareTo(res2) == 0)
                 result = new Segment { From = x1, To = x2 };
