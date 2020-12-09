@@ -16,6 +16,7 @@
     <link href="css/github.css" rel="stylesheet">
     <link href="css/popup.css" rel="stylesheet">
     <link href="css/avatars-gallery.css" rel="stylesheet">
+    <link href="css/chat.css" rel="stylesheet">
 
     <script src="scripts/autoResize.js"></script>
     <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
@@ -231,6 +232,23 @@
                 <div class="calendar"></div>
             </div>
         </section>
+
+        <div class="section-row space-between">
+            <section class="send-message">
+                <div class="section-content">
+                    <textarea class="send-message-input"></textarea>
+                    <button class="send-message-button" onclick="sendMessage()">Send message</button>
+                </div>
+            </section>
+
+            <section class="chat">
+                <div class="section-content">
+                    <div class="chat-content">
+
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
 
     <footer>
@@ -251,5 +269,6 @@
     </script>
     <script src="js/contacts.js"></script>
     <script src="js/avatars-gallery.js"></script>
+    <script src="js/chat.js"></script>
 </body>
 </html>
