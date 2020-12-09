@@ -11,26 +11,26 @@ function setAvatars(){
     next = document.querySelector(".avatar-next");
 }
 
-function moveNext() {
+function movePrev() {
     setAvatars();
 
     cur.classList.replace("avatar-cur", "avatar-next");
     prev.classList.replace("avatar-prev", "avatar-cur");
     
-    next.remove();
-    gallery.innerHTML += `<img class="avatar avatar-prev" src="src/${src[curSrc]}" draggable="false"/>`
+    curSrc = curSrc == 0 ? src.length - 1 : curSrc - 1;
 
-    curSrc = (curSrc + 1) % src.length;
+    next.remove();
+    gallery.innerHTML += `<img class="avatar avatar-prev" src="src/${src[curSrc == 0 ? src.length - 1 : curSrc - 1]}" draggable="false"/>`
 }
 
-function movePrev(){
+function moveNext(){
     setAvatars();
 
     cur.classList.replace("avatar-cur", "avatar-prev");
     next.classList.replace("avatar-next", "avatar-cur");
 
-    prev.remove();
-    gallery.innerHTML += `<img class="avatar avatar-next" src="src/${src[curSrc]}" draggable="false"/>`
+    curSrc = (curSrc + 1) % src.length;
 
-    curSrc = curSrc == 0 ? src.length - 1 : curSrc - 1;
+    prev.remove();
+    gallery.innerHTML += `<img class="avatar avatar-next" src="src/${src[(curSrc + 1) % src.length]}" draggable="false"/>`
 }
