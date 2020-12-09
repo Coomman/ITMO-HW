@@ -1,0 +1,47 @@
+.avatar {
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
+    margin-bottom: 0.625rem;
+
+    mask: url(#masking);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.avatars-gallery {
+    overflow: hidden;
+
+    width: 11.25rem;
+    height: 11.25rem;
+
+    position: relative;
+}
+
+.avatar-prev {
+    transform: translateX(-11.25rem);
+}
+
+.avatar-next {
+    transform: translateX(11.25rem);
+}
+
+.avatars-gallery-prev, .avatars-gallery-next {
+    position: absolute;
+    height: 100%;
+    width: 20%;
+
+    top: 0;
+    z-index: 50;
+}
+
+.avatars-gallery-prev {
+    left: 0;
+}
+
+.avatars-gallery-next {
+    right: 0;
+}
