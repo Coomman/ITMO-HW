@@ -15,11 +15,18 @@ function sendMessage() {
     answer(msgTxt);
 }
 
-function answer(msgTxt) {
-    let ansMsg = "dhsadhsahd";
+let adjs = ["good", "bad", "green", "blue"];
+let nouns = ["ball", "sun", "man", "horse"];
+let verbs = ["bouncing", "shining", "walking", "scratching"];
 
-    if (calcExp.test(msgTxt.replace(" ", ""))) {
+function answer(msgTxt) {
+    let ansMsg = "";
+
+    if (calcExp.test(msgTxt.replaceAll(" ", ""))) {
         ansMsg = eval(msgTxt)
+    }
+    else {
+        ansMsg = adjs[Math.floor(Math.random() * adjs.length)] + " " + nouns[Math.floor(Math.random() * nouns.length)] + " is " + verbs[Math.floor(Math.random() * verbs.length)];
     }
 
     messageContent.innerHTML += `<div class="ans-msg">${ansMsg}</div>`
