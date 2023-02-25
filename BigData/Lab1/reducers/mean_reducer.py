@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import sys
 import numpy as np
 
@@ -12,7 +14,7 @@ def main():
 
     line = sys.stdin.readline().strip()
     while line:
-        spl = line.split("\t")
+        spl = line.split("\t")[1:]
         sizes += [int(spl[0])]
         means += [float(spl[1])]
         line = sys.stdin.readline().strip()

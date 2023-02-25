@@ -1,7 +1,9 @@
+#!/usr/bin/env python
+
 import sys
 
 
-def reduce(c1, c2, m1, m2, v1, v2) -> (int, float, float):
+def reduce(c1, c2, m1, m2, v1, v2):
     m = (c1 * m1 + c2 * m2) / (c1 + c2)
     v = (c1 * v1 + c2 * v2) / (c1 + c2) + c1 * c2 * (((m2 - m1) / (c1 + c2)) ** 2)
 
@@ -15,7 +17,7 @@ def main():
 
     line = sys.stdin.readline().strip()
     while line:
-        spl = line.split("\t")
+        spl = line.split("\t")[1:]
         sizes += [int(spl[0])]
         means += [float(spl[1])]
         variances += [float(spl[2])]

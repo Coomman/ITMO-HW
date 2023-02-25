@@ -1,9 +1,11 @@
+#!/usr/bin/env python
+
 import sys
 import numpy as np
 
 
 def calc_mean(prices: np.array) -> str:
-    return f'{prices.size}\t{prices.mean()}'
+    return f'1\t{prices.size}\t{prices.mean()}'
 
 
 def main():
