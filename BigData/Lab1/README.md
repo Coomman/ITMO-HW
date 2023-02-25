@@ -8,6 +8,10 @@
 Получившийся [docker-compose file](docker-compose.yml) с конфигурацией ***1 NN, 2 DN + 2 NM, 1 RM, 1 HS***  
 Также на этом этапе в *Dockerfile namenode* были добавлены шаги по установке *python* и *numpy*
 
+![Namenode](https://user-images.githubusercontent.com/48883672/221371475-c61b9e91-318a-4ea9-9e02-e29ea9b725f4.png)
+
+![Resource manager](https://user-images.githubusercontent.com/48883672/221371241-47434606-5c32-47ff-9248-e505e8d5ba20.png)
+
 
 ## Блок 2. Написание map reduce на Python
 
